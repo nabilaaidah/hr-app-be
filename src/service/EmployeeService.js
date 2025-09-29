@@ -8,7 +8,7 @@ class EmployeeService {
         this.employeeDao = new EmployeeDao();
     }
 
-    async getAllEmployees(limit = 10, offset = 0, order = 'updated_at', sort = 'DESC') {
+    getAllEmployees = async (limit = 10, offset = 0, order = 'updated_at', sort = 'DESC') => {
         try {
             const result = await this.employeeDao.getEmployeeList(limit, offset, order, sort);
             return {
@@ -24,9 +24,9 @@ class EmployeeService {
                 error: error.message,
             };
         }
-    }
+    };
 
-    async getEmployeeById(employee_id) {
+    getEmployeeById = async (employee_id) => {
         try {
             const employee = await this.employeeDao.findByEmployeeId(employee_id);
             
@@ -49,17 +49,10 @@ class EmployeeService {
                 error: error.message,
             };
         }
-    }
+    };
 
-    async createEmployee(employeeData, createdBy) {
+    createEmployee = async (employeeData, createdBy) => {
         try {
-            if (!employeeData.employee_nik || !employeeData.employee_name || !employeeData.employee_email) {
-                return {
-                    success: false,
-                    message: 'NIK, name, and email are required',
-                };
-            }
-
             const existingEmail = await this.employeeDao.findByEmail(employeeData.employee_email);
             if (existingEmail) {
                 return {
@@ -103,9 +96,9 @@ class EmployeeService {
                 error: error.message,
             };
         }
-    }
+    };
 
-    async updateEmployee(employee_id, employeeData, updatedBy) {
+    updateEmployee = async (employee_id, employeeData, updatedBy) => {
         try {
             const employee = await this.employeeDao.findByEmployeeId(employee_id);
             if (!employee) {
@@ -160,9 +153,9 @@ class EmployeeService {
                 error: error.message,
             };
         }
-    }
+    };
 
-    async deleteEmployee(employee_id) {
+    deleteEmployee = async (employee_id) => {
         try {
             const employee = await this.employeeDao.findByEmployeeId(employee_id);
             if (!employee) {
@@ -186,9 +179,9 @@ class EmployeeService {
                 error: error.message,
             };
         }
-    }
+    };
 
-    async getEmployeeByNIK(employee_nik) {
+    getEmployeeByNIK = async (employee_nik) => {
         try {
             const employee = await this.employeeDao.findByNIK(employee_nik);
             
@@ -211,9 +204,9 @@ class EmployeeService {
                 error: error.message,
             };
         }
-    }
+    };
 
-    async getEmployeeByEmail(employee_email) {
+    getEmployeeByEmail = async (employee_email) => {
         try {
             const employee = await this.employeeDao.findByEmail(employee_email);
             
@@ -236,7 +229,7 @@ class EmployeeService {
                 error: error.message,
             };
         }
-    }
+    };
 }
 
 module.exports = EmployeeService;

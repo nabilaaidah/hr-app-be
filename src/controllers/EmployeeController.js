@@ -7,7 +7,7 @@ class EmployeeController {
         this.employeeService = new EmployeeService();
     }
 
-    async getAllEmployees(req, res) {
+    getAllEmployees = async (req, res) => {
         try {
             const { limit = 10, offset = 0, order = 'created_at', sort = 'DESC' } = req.query;
             
@@ -37,9 +37,9 @@ class EmployeeController {
                 message: 'Internal server error',
             });
         }
-    }
+    };
 
-    async createEmployee(req, res) {
+    createEmployee = async (req, res) => {
         try {
             const employeeData = req.body;
             const createdBy = req.user?.employee_id || req.user?.id || 'system'; // From auth middleware
@@ -72,9 +72,9 @@ class EmployeeController {
                 message: 'Internal server error',
             });
         }
-    }
+    };
 
-    async updateEmployee(req, res) {
+    updateEmployee = async (req, res) => {
         try {
             const { employee_id } = req.params;
             const employeeData = req.body;
@@ -108,9 +108,9 @@ class EmployeeController {
                 message: 'Internal server error',
             });
         }
-    }
+    };
 
-    async deleteEmployee(req, res) {
+    deleteEmployee = async (req, res) => {
         try {
             const { employee_id } = req.params;
 
@@ -141,7 +141,7 @@ class EmployeeController {
                 message: 'Internal server error',
             });
         }
-    }
+    };
 }
 
 module.exports = new EmployeeController();

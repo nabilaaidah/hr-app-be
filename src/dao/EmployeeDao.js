@@ -2,7 +2,7 @@
 const SuperDao = require('./SuperDao');
 const models = require('../models');
 
-const Employee = models.Employee;
+const Employee = models.employee;
 
 class EmployeeDao extends SuperDao {
     constructor() {
